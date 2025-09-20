@@ -1,0 +1,96 @@
+/* === Global card look === */
+forge-card {
+  --forge-card-padding: 1rem;
+  border-left: 6px solid transparent; /* placeholder for accents */
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+/* === Section type accents === */
+.text-section {
+  border-left-color: var(--forge-asdf-primary, #0055aa);
+}
+
+.video-section {
+  border-left-color: var(--forge-sdfdsdfd-secondary, #aa5500);
+}
+
+.quiz-section {
+  border-left-color: var(--forge-ertrerer-tertiary, #008800);
+}
+
+/* === Section wrappers === */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.section p {
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+/* === Quiz styling === */
+.quiz-question {
+  margin-top: 1rem;
+}
+
+.quiz-question p {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+forge-list {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+forge-list-item {
+  --forge-list-item-padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* === Layout container === */
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.correct-icon {
+  color: var(--forge-theme-success, #2e7d32);
+}
+
+.incorrect-icon {
+  color: var(--forge-theme-error, #c62828);
+}
+
+.quiz-question {
+  margin-top: 1rem;
+}
+
+.score {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.quiz-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* space between buttons */
+  margin-top: 0.5rem;
+}
+
+.quiz-choices forge-button {
+  width: 100%;            /* make buttons fill the container */
+  justify-content: space-between; /* keep text left, icon right */
+}

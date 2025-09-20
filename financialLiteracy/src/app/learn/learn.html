@@ -1,0 +1,17 @@
+<h1 style="margin-left: 1rem;">Learning Modules</h1>
+<div class="module-grid">
+  @for (module of modules; track module.id) {
+      <forge-card>
+        <forge-button-area (click)="goToModule(module.id)">
+          <button slot="button" aria-labelledby="button-area-heading"></button>
+
+          <div class="content">
+            <h2>{{ module.title }}</h2>
+            <img [src]="module.imageLink" alt="{{ module.title }}" />
+            <p>{{ module.description }}</p>
+            <p>Duration: {{ module.duration }} minutes</p>
+          </div>
+        </forge-button-area>
+      </forge-card>
+  }
+</div>

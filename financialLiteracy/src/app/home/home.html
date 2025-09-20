@@ -1,0 +1,26 @@
+@if (!isLoggedIn) {
+  <forge-card class="login-card">
+    <div class="login-content">
+      <h2>Login</h2>
+      <forge-text-field>
+  <label for="username">Username</label>
+  <input id="username" type="text" [(ngModel)]="username" />
+</forge-text-field>
+      <forge-text-field>
+  <label for="password">Password</label>
+  <input id="password" type="password" [(ngModel)]="password" />
+</forge-text-field>
+      <forge-button variant="raised" (click)="login()">Login</forge-button>
+    </div>
+  </forge-card>
+}
+
+@if (isLoggedIn) {
+  <forge-card class="welcome-card">
+    <div class="welcome-content">
+      <h2>Welcome back, {{ username }}!</h2>
+      <p>You are now logged in to the Financial Literacy app.</p>
+      <forge-button variant="outlined" (click)="logout()">Logout</forge-button>
+    </div>
+  </forge-card>
+}

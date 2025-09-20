@@ -1,0 +1,96 @@
+<h1 style="margin-left: 1rem;">{{ module?.title }}</h1>
+<p style="margin-bottom: 2rem; margin-left: 1rem;">{{ module?.introduction }}</p>
+
+<div class="sections" style="margin-left: 1rem;">
+  @for (section of module?.sections; track $index) {
+    @switch (section.type) {
+      
+      @case ('text') {
+        <forge-card class="section text-section">
+          <div >
+            <h3>Reading</h3>
+            <forge-divider></forge-divider>
+            <p><small>Duration: {{ section.duration }} min</small></p>
+            <div [innerHTML]="section.textContent"></div>
+          </div>
+        </forge-card>
+      }
+
+      @case ('video') {
+        <forge-card class="section video-section">
+          <div >
+            <h3>Watch</h3>
+            <forge-divider></forge-divider>
+            <p><small>Duration: {{ section.duration }} min</small></p>
+            <div [innerHTML]="trustHtml(section.videoContent!)"></div>
+          </div>
+        </forge-card>
+      }
+
+      @case ('quiz') {
+        <forge-card class="quiz-section">
+            <div class="section">
+            <h3>Quiz</h3>
+            <forge-divider></forge-divider>
+            <p><small>Duration: {{ section.duration }} min</small></p>
+
+            @for (q of section.quizContent?.questions; track $index) {
+                <div class="quiz-question">
+                <p><strong>Q:</strong> {{ q.question }}</p>
+
+                <forge-list>
+                    @for (choice of q.choices; track $index) {
+                    <forge-list-item (click)="selectAnswer(q, $index)">
+                        <!-- Radio on the left -->
+                        <forge-radio
+                        slot="start"
+                        [checked]="isSelected(q, $index)"
+                        [disabled]="isAnswered(q)">
+                        </forge-radio>
+
+                        {{ choice }}
+
+                        <!-- Feedback icons on the right -->
+                        @if (isAnswered(q)) {
+                            @if ($index === q.answer) {
+                                <forge-icon
+                                slot="start"
+                                name="check_circle"
+                                class="correct-icon">
+                                </forge-icon>
+                            } @else if (isSelected(q, $index)) {
+                                <forge-icon
+                                slot="start"
+                                name="cancel"
+                                class="incorrect-icon">
+                                </forge-icon>
+                            }
+                        } @else {
+                            <forge-icon
+                            slot="start"
+                            name=""
+                            class="no-icon">
+                            </forge-icon>
+                        }   
+                    </forge-list-item>
+                    }
+                </forge-list>
+                </div>
+            }
+
+            <!-- Running score -->
+            <p class="score">Score: {{ score }}/{{ totalQuestions }}</p>
+            </div>
+        </forge-card>
+        }
+
+      @default {
+        <forge-card>
+          <div class="section unknown">
+            <p>Unknown section type</p>
+          </div>
+        </forge-card>
+      }
+    }
+}
+</div>
